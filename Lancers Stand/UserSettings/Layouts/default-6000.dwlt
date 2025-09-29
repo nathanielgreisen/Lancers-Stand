@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1440
     height: 847
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -1027,9 +1027,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: ccec0000
       m_LastClickedID: 0
-      m_ExpandedIDs: 46eeffffd0efffff10f1ffffdcfaffff
+      m_ExpandedIDs: b2faffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1137,7 +1137,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Resources/Sprites/LetterIcons
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1147,16 +1147,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Resources/Sprites/LetterIcons
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/nathanielgreisen/Lancers-Stand/Lancers Stand
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 182.5}
-    m_SelectedIDs: 70ed0000
-    m_LastClickedID: 60784
-    m_ExpandedIDs: 00000000c6ec00006ced000070ed0000c4ed000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: f2ef0000
+    m_LastClickedID: 61426
+    m_ExpandedIDs: 00000000a8ee00004eef000052ef0000eaef000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1185,7 +1185,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c6ec0000
+    m_ExpandedIDs: 00000000a8ee0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4df951f604b09c148a44b79097d42b62
+guid: 49224d6ec25f84d77959111f80bef884
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5858099061022299432
-    second: Space_0
+      213: 144775311990115912
+    second: LeftArrow_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -99,9 +99,9 @@ TextureImporter:
   - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
-    resizeAlgorithm: 1
+    resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,12 +113,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Space_0
+      name: LeftArrow_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 104
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8da67b801f9d3bea0800000000000000
-      internalID: -5858099061022299432
+      spriteID: 84eca631168520200800000000000000
+      internalID: 144775311990115912
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Space_0: -5858099061022299432
+      LeftArrow_0: 144775311990115912
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

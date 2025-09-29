@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4df951f604b09c148a44b79097d42b62
+guid: a315cf15e710845c1892827bfe53ff2c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5858099061022299432
-    second: Space_0
+      213: -7137179805908077444
+    second: DownArrow_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -99,9 +99,9 @@ TextureImporter:
   - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
-    resizeAlgorithm: 1
+    resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,12 +113,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Space_0
+      name: DownArrow_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 104
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8da67b801f9d3bea0800000000000000
-      internalID: -5858099061022299432
+      spriteID: c74f1cae7c4a3fc90800000000000000
+      internalID: -7137179805908077444
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Space_0: -5858099061022299432
+      DownArrow_0: -7137179805908077444
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
