@@ -6,8 +6,10 @@ public class PlayerDeathManager : MonoBehaviour
 {
 
     public GameObject deathScreen;
+    public GameObject healthBox;
 
     public GameObject player;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -15,6 +17,7 @@ public class PlayerDeathManager : MonoBehaviour
     {
         deathScreen.SetActive(false);
         player.SetActive(true);
+        healthBox.SetActive(true);
     }
 
     // Update is called once per frame
@@ -24,6 +27,7 @@ public class PlayerDeathManager : MonoBehaviour
         {
             player.SetActive(false);
             deathScreen.SetActive(true);
+            healthBox.SetActive(false);
         }
     }
 
