@@ -37,9 +37,6 @@ public class PlayerDeathManager : MonoBehaviour
 
     public void RestartButton()
     {
-
         SceneManager.LoadScene("SampleScene");
-        player.SetActive(true);
-        deathScreen.SetActive(false);
     }
 }
