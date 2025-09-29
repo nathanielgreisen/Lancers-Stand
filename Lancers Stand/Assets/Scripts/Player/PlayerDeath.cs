@@ -30,13 +30,25 @@ public class PlayerDeathManager : MonoBehaviour
 
     public void MenuButton()
     {
-        
-        GlobalVariables.currentScene = "MainMenu";
-        SceneManager.LoadScene("MainMenu");
-    }
 
+        SceneManager.LoadScene("MainMenu");
+
+        GlobalVariables.currentScene = "MainMenu";
+        GlobalVariables.health = 5;
+        GlobalVariables.maxHealth = 5.0;
+        GlobalVariables.focusLocked = false;
+        GlobalVariables.isAttacking = false;
+        GlobalVariables.isDamaging = false;
+    }
     public void RestartButton()
     {
         SceneManager.LoadScene("SampleScene");
+        
+        GlobalVariables.currentScene = "SampleScene";
+        GlobalVariables.health = 5;
+        GlobalVariables.maxHealth = 5.0;
+        GlobalVariables.focusLocked = false;
+        GlobalVariables.isAttacking = false;
+        GlobalVariables.isDamaging = false;
     }
 }
