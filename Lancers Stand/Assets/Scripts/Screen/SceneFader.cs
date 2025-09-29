@@ -41,7 +41,7 @@ public class SceneFader : MonoBehaviour
         }
     }
 
-    private IEnumerator FadeOutIn(string sceneName)
+    public IEnumerator FadeOutIn(string sceneName)
     {
         // Fade out
         float t = 0f;

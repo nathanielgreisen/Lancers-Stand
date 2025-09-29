@@ -49,9 +49,9 @@ public class Attack : MonoBehaviour
         // 1 -> 2 -> 3 -> 2 -> 1 pattern = 4 transitions
         float frameDuration = attackAnimationDuration / 4f;
 
-        Sprite s1 = facingRight ? attackSpriteLeft1 : attackSpriteRight1;
-        Sprite s2 = facingRight ? attackSpriteLeft2 : attackSpriteRight2;
-        Sprite s3 = facingRight ? attackSpriteLeft3 : attackSpriteRight3;
+        Sprite s1 = facingRight ? attackSpriteRight1 : attackSpriteLeft1;
+        Sprite s2 = facingRight ? attackSpriteRight2 : attackSpriteLeft2;
+        Sprite s3 = facingRight ? attackSpriteRight3 : attackSpriteLeft3;
 
         GlobalVariables.isDamaging = true;
 
