@@ -6,6 +6,10 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Data")]
     public int health = 5;
 
+    private Vector2 posDeath;
+    public Sprite deathSprite;
+    public PhysicsMaterial2D deathPhysics;
+
     [Header("Objects")]
     public GameObject player;
     public GameObject enemy;
@@ -61,7 +65,7 @@ public class Enemy : MonoBehaviour
     public float frameRate = 0.2f; // Time per frame
     private Vector2 lastDirection = Vector2.right;
 
-    [Header("Animation (slime-specific)")]
+    [Header("Animation (Slime)")]
     public Sprite aboutToJumpRight;
     public Sprite aboutToJumpLeft;
     public Sprite inAirRight;
@@ -85,8 +89,9 @@ public class Enemy : MonoBehaviour
     void Update()
     {
 
-        if (health <= 0) {
-            Destroy(gameObject);
+        if (health <= 0)
+        {
+            EnemyDeath();
         }
 
         healthText.text = health.ToString();
@@ -348,7 +353,35 @@ public class Enemy : MonoBehaviour
             sr.sprite = frames[currentFrame];
         }
     }
-    
+
+
+    void EnemyDeath()
+    {
+        posDeath = transform.position;
+
+        // Create object
+        GameObject deathObject = new GameObject("EnemyDeathObject");
+
+        // Create and apply sprite
+        SpriteRenderer spriteRenderer = deathObject.AddComponent<SpriteRenderer>();
+        spriteRenderer.sprite = deathSprite;
+
+        // Add Collision
+        Rigidbody2D rigidbody2D = deathObject.AddComponent<Rigidbody2D>();
+        rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+        rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        rigidbody2D.interpolation = RigidbodyInterpolation2D.Interpolate;
+
+        CircleCollider2D circleCollider2D = deathObject.AddComponent<CircleCollider2D>();
+
+        
+        circleCollider2D.sharedMaterial = deathPhysics;
+
+
+        deathObject.transform.position = new Vector2(posDeath.x, posDeath.y+1f);
+
+        Destroy(gameObject);
+    }
     
 
 }
