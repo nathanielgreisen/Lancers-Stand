@@ -9,6 +9,6 @@ PhysicsMaterial2D:
   m_Name: DeathPhysics
   serializedVersion: 2
   friction: 10
-  bounciness: 1
-  m_FrictionCombine: 3
+  bounciness: 0.7
+  m_FrictionCombine: 4
   m_BounceCombine: 4

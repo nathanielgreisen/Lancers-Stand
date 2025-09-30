@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   health: 1
-  deathSprite: {fileID: 1652771774, guid: 5fe5454ec8605de43809133b020d1b69, type: 3}
+  deathSprite: {fileID: 21300000, guid: 6aa97fa1182160b49a9f6a5581ea809d, type: 3}
   deathPhysics: {fileID: 6200000, guid: 7f267f0fbff354075a656d360562b415, type: 2}
   player: {fileID: 1819816207}
   enemy: {fileID: 31975248}

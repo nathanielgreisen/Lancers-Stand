@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
@@ -71,6 +72,7 @@ public class Enemy : MonoBehaviour
     public Sprite inAirRight;
     public Sprite inAirLeft;
     public float aboutToJumpTime = 0.25f;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -363,23 +365,70 @@ public class Enemy : MonoBehaviour
         GameObject deathObject = new GameObject("EnemyDeathObject");
 
         // Create and apply sprite
-        SpriteRenderer spriteRenderer = deathObject.AddComponent<SpriteRenderer>();
-        spriteRenderer.sprite = deathSprite;
+        SpriteRenderer sr = deathObject.AddComponent<SpriteRenderer>();
+        sr.sprite = deathSprite;
 
         // Add Collision
-        Rigidbody2D rigidbody2D = deathObject.AddComponent<Rigidbody2D>();
-        rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
-        rigidbody2D.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        rigidbody2D.interpolation = RigidbodyInterpolation2D.Interpolate;
+        Rigidbody2D rb = deathObject.AddComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+        rb.gravityScale = 3f;
 
-        CircleCollider2D circleCollider2D = deathObject.AddComponent<CircleCollider2D>();
-
-        
-        circleCollider2D.sharedMaterial = deathPhysics;
+        PolygonCollider2D pc = deathObject.AddComponent<PolygonCollider2D>();
+        pc.sharedMaterial = deathPhysics;
 
 
-        deathObject.transform.position = new Vector2(posDeath.x, posDeath.y+1f);
+        ///// Sets the collider to the sprite's shape
+        // Clear any existing paths
+        pc.pathCount = 0;
+        Sprite sprite = sr.sprite;
+        int shapeCount = sprite.GetPhysicsShapeCount();
+        pc.pathCount = shapeCount;
+        List<Vector2> path = new List<Vector2>();
+        for (int i = 0; i < shapeCount; i++)
+        {
+            path.Clear();
+            sprite.GetPhysicsShape(i, path);
+            pc.SetPath(i, path.ToArray());
+        }
 
+        deathObject.transform.position = new Vector2(posDeath.x, posDeath.y);
+
+        // Random lanuching bc it looks cool
+        // Im just going to hardcode values
+        // Launch up
+        float up = Random.Range(6f, 10f);
+        rb.AddForce(Vector2.up * up, ForceMode2D.Impulse);
+
+        // Random spin
+        float torque = Random.Range(0.5f, 1f);
+        if (Random.value > 0.5f) { torque *= -1; } // random direction
+        rb.AddTorque(torque, ForceMode2D.Impulse);
+
+        StartCoroutine(DeathFade(deathObject));
+        gameObject.SetActive(false);
+    }
+
+    private System.Collections.IEnumerator DeathFade(GameObject deathObject)
+    {
+
+        SpriteRenderer sr = deathObject.GetComponent<SpriteRenderer>();
+        Color c = sr.color;
+
+        float fadeDuration = 2f; // I'm also hardcoding this to hopefully safe space up yonder
+
+        float elapsed = 0f;
+
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, elapsed / fadeDuration);
+            sr.color = new Color(c.r, c.g, c.b, alpha);
+            yield return null;
+        }
+
+        Destroy(deathObject);
         Destroy(gameObject);
     }
     
