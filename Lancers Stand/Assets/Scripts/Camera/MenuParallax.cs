@@ -6,14 +6,11 @@ public class MenuParallax : MonoBehaviour
 
     public Transform cameraTransform;
     private float spriteWidth;
-    private Vector3 startPos;
 
 
     //TODO: Fix this whole thing because there are occasional gaps
     void Start()
     {
-        startPos = transform.position;
-
         // Get width of sprite
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         spriteWidth = sr.bounds.size.x;

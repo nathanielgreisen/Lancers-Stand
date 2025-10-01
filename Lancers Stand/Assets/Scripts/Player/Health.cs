@@ -9,14 +9,7 @@ public class Health : MonoBehaviour
 
     private int initHealth; // The current number of initialized health objects in HealthBackground
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+    void Update() //TODO: Something in here is making the hearts generate slightly big for some reason when using debug
     {
         initHealth = HealthBackground.transform.childCount;
         if (initHealth < GlobalVariables.health) //When hearts are added

@@ -50,7 +50,7 @@ public class PlayerAnimation : MonoBehaviour
                 Animate(runRight);
                 lastDirection = Vector2.right;
                 spriteHolder.localPosition = rightOffset;
-                attackBox.localPosition = new Vector3(0.0618f, -0.067f, 0f);
+                attackBox.localPosition = new Vector3(0.0618f, -0.067f, 0f); // Hardcoded bc im lazy
             }
             else if (moveDir.x < 0) // Moving left
             {
@@ -64,7 +64,7 @@ public class PlayerAnimation : MonoBehaviour
                 Animate(runLeft);
                 lastDirection = Vector2.left;
                 spriteHolder.localPosition = leftOffset;
-                attackBox.localPosition = new Vector3(-0.267f, -0.067f, 0f);
+                attackBox.localPosition = new Vector3(-0.267f, -0.067f, 0f); // yuh
             }
             else // Idle
             {

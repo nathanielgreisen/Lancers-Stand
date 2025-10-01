@@ -10,9 +10,6 @@ public class PlayerDeathManager : MonoBehaviour
 
     public GameObject player;
 
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         deathScreen.SetActive(false);
@@ -20,7 +17,6 @@ public class PlayerDeathManager : MonoBehaviour
         healthBox.SetActive(true);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (GlobalVariables.health <= 0)
@@ -31,24 +27,11 @@ public class PlayerDeathManager : MonoBehaviour
         }
     }
 
-
-    public void MenuButton()
+public void DeathButton(string screen)
     {
+        SceneManager.LoadScene(screen); // "MainMenu" or "SampleScene"
 
-        SceneManager.LoadScene("MainMenu");
-
-        GlobalVariables.currentScene = "MainMenu";
-        GlobalVariables.health = 5;
-        GlobalVariables.maxHealth = 5.0;
-        GlobalVariables.focusLocked = false;
-        GlobalVariables.isAttacking = false;
-        GlobalVariables.isDamaging = false;
-    }
-    public void RestartButton()
-    {
-        SceneManager.LoadScene("SampleScene");
-        
-        GlobalVariables.currentScene = "SampleScene";
+        GlobalVariables.currentScene = screen;
         GlobalVariables.health = 5;
         GlobalVariables.maxHealth = 5.0;
         GlobalVariables.focusLocked = false;

@@ -5,7 +5,7 @@ using System.Collections;
 
 public class SceneFader : MonoBehaviour
 {
-    public static SceneFader instance; // singleton so it persists
+    public static SceneFader instance;
     public Image fadeImage;
     public GameObject FadingCanvas;
     public float fadeDuration = 1f;

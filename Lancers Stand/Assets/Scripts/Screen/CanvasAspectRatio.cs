@@ -8,6 +8,7 @@ public class CanvasAspectRatio : MonoBehaviour
         AdjustCanvasScalers();
     }
 
+    // I dislike this function with all my soul idk why it was so hard to make
     void AdjustCanvasScalers()
     {
         float aspect = (float)Screen.width / Screen.height;

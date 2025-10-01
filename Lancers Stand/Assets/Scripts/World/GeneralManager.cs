@@ -11,7 +11,6 @@ public class generalManager : MonoBehaviour
 
         foreach (GameObject block in interactionBlocks)
         {
-            // Example: change their SpriteRenderer color
             SpriteRenderer sr = block.GetComponent<SpriteRenderer>();
 
             sr.sprite = Resources.Load<Sprite>("Sprites/LetterIcons/" + GlobalVariables.interactKey.ToString());
@@ -33,7 +32,7 @@ public class generalManager : MonoBehaviour
         SpriteRenderer sr = deathObject.GetComponent<SpriteRenderer>();
         Color c = sr.color;
 
-        float fadeDuration = 2f; // I'm also hardcoding this to hopefully safe space up yonder
+        float fadeDuration = 2f; // I'm hardcoding this bc its not working outside and idk why
 
         float elapsed = 0f;
 

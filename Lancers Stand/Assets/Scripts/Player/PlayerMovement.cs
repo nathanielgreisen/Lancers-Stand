@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (!GlobalVariables.focusLocked)
+        if (!GlobalVariables.focusLocked) // Player can move
         {
             // check to make suer the player is on the ground
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundMask);
@@ -43,11 +43,12 @@ public class PlayerMovement : MonoBehaviour
             if (Time.time - jumpBufferTime < jumpGraceTime && Time.time - lastGroundedTime < jumpGraceTime)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-                jumpBufferTime = -999f; // Prevent double jump
+                jumpBufferTime = -999f; // Prevent double jump i hope
             }
         }
         else
         {
+            // Added this because when focused locked the vertical linear velocity would be wack
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
         

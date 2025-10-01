@@ -51,7 +51,7 @@ public class TextTrigger : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")) // So it doesnt appear if a random enemy is in there
         {
             isInArea = true;
             interactButton.SetActive(true);
@@ -63,7 +63,7 @@ public class TextTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isInArea = false;
-            if (isVisible) { ToggleDialogue(); }
+            if (isVisible) { ToggleDialogue(); } // Disables when walked away
             interactButton.SetActive(false);
         }
     }
@@ -86,8 +86,6 @@ public class TextTrigger : MonoBehaviour
         {
             textComponent.text = "";
         }
-        
-        
     }
 
     private IEnumerator TypeText()

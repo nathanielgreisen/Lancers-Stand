@@ -3,16 +3,16 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     [Header("Attack Animation")]
-    public Sprite attackSpriteRight1;  // First attack frame (right-facing)
-    public Sprite attackSpriteRight2;  // Second attack frame (right-facing)
-    public Sprite attackSpriteRight3;  // Third attack frame (right-facing)
+    public Sprite attackSpriteRight1; // First attack frame
+    public Sprite attackSpriteRight2; // Second attack frame
+    public Sprite attackSpriteRight3; // Third attack frame 
 
-    public Sprite attackSpriteLeft1;   // First attack frame (left-facing)
-    public Sprite attackSpriteLeft2;   // Second attack frame (left-facing)
-    public Sprite attackSpriteLeft3;   // Third attack frame (left-facing)
+    public Sprite attackSpriteLeft1; // First attack frame 
+    public Sprite attackSpriteLeft2; // Second attack frame
+    public Sprite attackSpriteLeft3; // Third attack frame
 
     private Sprite idleSprite; 
-    public float attackAnimationDuration = 1f; // Total seconds for animation sequence
+    public float attackAnimationDuration = 1f; // Total seconds for animation
 
     public GameObject spriteHolder;
     private SpriteRenderer spriteRenderer;
@@ -46,7 +46,7 @@ public class Attack : MonoBehaviour
 
     private System.Collections.IEnumerator AttackAnimationSequence()
     {
-        // 1 -> 2 -> 3 -> 2 -> 1 pattern = 4 transitions
+        // 1 -> 2 -> 3 -> 2 -> 1
         float frameDuration = attackAnimationDuration / 4f;
 
         Sprite s1 = facingRight ? attackSpriteRight1 : attackSpriteLeft1;

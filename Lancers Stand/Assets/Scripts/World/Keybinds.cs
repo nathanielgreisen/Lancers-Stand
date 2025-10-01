@@ -6,6 +6,7 @@ using System.Linq;
 public class Keybinds : MonoBehaviour
 {
     // UI references
+    // Add more keybinds here
     public GameObject leftIcon;
     public GameObject rightIcon;
     public GameObject jumpIcon;
@@ -59,7 +60,7 @@ public class Keybinds : MonoBehaviour
 
             // Highlight the correct icon
             switch (key)
-            {
+            { // Add more keybinds here
                 case "left": focusedImage = leftIcon.GetComponent<Image>(); break;
                 case "right": focusedImage = rightIcon.GetComponent<Image>(); break;
                 case "jump": focusedImage = jumpIcon.GetComponent<Image>(); break;
@@ -81,7 +82,7 @@ public class Keybinds : MonoBehaviour
         Debug.Log($"Assigned {newKey} to {action}");
 
         switch (action)
-        {
+        { // add more keybinds here
             case "left":
                 GlobalVariables.leftKey = newKey;
                 break;

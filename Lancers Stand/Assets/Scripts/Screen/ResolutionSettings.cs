@@ -7,7 +7,6 @@ using System.Collections.Generic;
 public class ResolutionDropdown : MonoBehaviour
 {
     public TMP_Dropdown resolutionDropdown;
-
     public TMP_Dropdown screenDropdown;
     public Toggle vSyncToggle;
     private List<(int width, int height, int hz)> uniqueResolutions;
