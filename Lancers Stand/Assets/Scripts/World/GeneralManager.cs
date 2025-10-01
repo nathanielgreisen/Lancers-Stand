@@ -26,4 +26,25 @@ public class generalManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + -1);
         }
     }
+
+    public static System.Collections.IEnumerator DeathFade(GameObject deathObject)
+    {
+
+        SpriteRenderer sr = deathObject.GetComponent<SpriteRenderer>();
+        Color c = sr.color;
+
+        float fadeDuration = 2f; // I'm also hardcoding this to hopefully safe space up yonder
+
+        float elapsed = 0f;
+
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, elapsed / fadeDuration);
+            sr.color = new Color(c.r, c.g, c.b, alpha);
+            yield return null;
+        }
+
+        Destroy(deathObject);
+    }
 }

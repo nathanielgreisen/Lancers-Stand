@@ -406,31 +406,7 @@ public class Enemy : MonoBehaviour
         if (Random.value > 0.5f) { torque *= -1; } // random direction
         rb.AddTorque(torque, ForceMode2D.Impulse);
 
-        StartCoroutine(DeathFade(deathObject));
-        gameObject.SetActive(false);
-    }
-
-    private System.Collections.IEnumerator DeathFade(GameObject deathObject)
-    {
-
-        SpriteRenderer sr = deathObject.GetComponent<SpriteRenderer>();
-        Color c = sr.color;
-
-        float fadeDuration = 2f; // I'm also hardcoding this to hopefully safe space up yonder
-
-        float elapsed = 0f;
-
-        while (elapsed < fadeDuration)
-        {
-            elapsed += Time.deltaTime;
-            float alpha = Mathf.Lerp(1f, 0f, elapsed / fadeDuration);
-            sr.color = new Color(c.r, c.g, c.b, alpha);
-            yield return null;
-        }
-
-        Destroy(deathObject);
+        deathObject.AddComponent<AutoFade>();
         Destroy(gameObject);
     }
-    
-
 }
