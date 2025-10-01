@@ -27,6 +27,7 @@ public class SceneFader : MonoBehaviour
 
     private IEnumerator FadeIn(int duration = 1)
     {
+
         float t = duration;
         Color color = fadeImage.color;
         color.a = 1f;
@@ -43,6 +44,7 @@ public class SceneFader : MonoBehaviour
 
     public IEnumerator FadeOutIn(string sceneName)
     {
+
         // Fade out
         float t = 0f;
         Color color = fadeImage.color;
