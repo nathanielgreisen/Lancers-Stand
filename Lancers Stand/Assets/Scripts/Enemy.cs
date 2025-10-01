@@ -100,14 +100,24 @@ public class Enemy : MonoBehaviour
 
         knockbackDirection = (enemy.transform.position - player.transform.position).normalized;
 
-
-        // More more slime stuff to ensure it is able to jump
-        jumpTimer -= Time.deltaTime;
         bool grounded = IsGrounded();
+        
+        // Jump timer countdown
+        jumpTimer -= Time.deltaTime;
+        
+        // Handle landing behavior
         if (grounded && !wasGrounded)
         {
-            rb.linearVelocity = Vector2.zero;
-            jumpTimer = jumpInterval;
+            // Always stop horizontal sliding when landing
+            Vector2 velocity = rb.linearVelocity;
+            velocity.x = 0f;
+            rb.linearVelocity = velocity;
+            
+            // Only reset jump timer if not knocked back
+            if (!isKnockedBack)
+            {
+                jumpTimer = jumpInterval;
+            }
         }
 
         // Only follow/stop if not currently knocked back
