@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     private Vector2 posDeath;
     public Sprite deathSprite;
     public PhysicsMaterial2D deathPhysics;
+    private PolygonCollider2D pc;
 
     [Header("Objects")]
     public GameObject player;
@@ -81,6 +82,7 @@ public class Enemy : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         sr = spriteHolder.GetComponent<SpriteRenderer>();
+        pc = GetComponent<PolygonCollider2D>();
 
         //more slime stuff
         jumpTimer = jumpInterval;
@@ -101,10 +103,10 @@ public class Enemy : MonoBehaviour
         knockbackDirection = (enemy.transform.position - player.transform.position).normalized;
 
         bool grounded = IsGrounded();
-        
+
         // Jump timer countdown
         jumpTimer -= Time.deltaTime;
-        
+
         // Handle landing behavior
         if (grounded && !wasGrounded)
         {
@@ -112,7 +114,7 @@ public class Enemy : MonoBehaviour
             Vector2 velocity = rb.linearVelocity;
             velocity.x = 0f;
             rb.linearVelocity = velocity;
-            
+
             // Only reset jump timer if not knocked back
             if (!isKnockedBack)
             {
@@ -388,20 +390,7 @@ public class Enemy : MonoBehaviour
         PolygonCollider2D pc = deathObject.AddComponent<PolygonCollider2D>();
         pc.sharedMaterial = deathPhysics;
 
-
-        ///// Sets the collider to the sprite's shape
-        // Clear any existing paths
-        pc.pathCount = 0;
-        Sprite sprite = sr.sprite;
-        int shapeCount = sprite.GetPhysicsShapeCount();
-        pc.pathCount = shapeCount;
-        List<Vector2> path = new List<Vector2>();
-        for (int i = 0; i < shapeCount; i++)
-        {
-            path.Clear();
-            sprite.GetPhysicsShape(i, path);
-            pc.SetPath(i, path.ToArray());
-        }
+        FixCollider(pc, sr);
 
         deathObject.transform.position = new Vector2(posDeath.x, posDeath.y);
 
@@ -418,5 +407,22 @@ public class Enemy : MonoBehaviour
 
         deathObject.AddComponent<AutoFade>();
         Destroy(gameObject);
+    }
+
+
+    void FixCollider(PolygonCollider2D pc, SpriteRenderer sr)
+    {
+        // Clear any existing paths
+        pc.pathCount = 0;
+        Sprite sprite = sr.sprite;
+        int shapeCount = sprite.GetPhysicsShapeCount();
+        pc.pathCount = shapeCount;
+        List<Vector2> path = new List<Vector2>();
+        for (int i = 0; i < shapeCount; i++)
+        {
+            path.Clear();
+            sprite.GetPhysicsShape(i, path);
+            pc.SetPath(i, path.ToArray());
+        }
     }
 }
