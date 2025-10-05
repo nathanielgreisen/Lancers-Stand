@@ -22,7 +22,10 @@ public class SceneFader : MonoBehaviour
 
     public void FadeToScene(string sceneName)
     {
-        StartCoroutine(FadeOutIn(sceneName)); // Command to fade into a scene
+        if () {
+            StartCoroutine(FadeOutIn(sceneName)); // Command to fade into a scene
+        }
+        
     }
 
     private IEnumerator FadeIn(int duration = 1)
