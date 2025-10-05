@@ -35,8 +35,8 @@ public class PlayerMovement : MonoBehaviour
 
             // Horizontal movement
             float moveInput = 0f;
-            if (Input.GetKey(GlobalVariables.leftKey)) { moveInput -= 1f; }
-            if (Input.GetKey(GlobalVariables.rightKey)) { moveInput += 1f; }
+            if (Input.GetKey(GlobalVariables.leftKey) || Input.GetKey(KeyCode.LeftArrow)) { moveInput -= 1f; }
+            if (Input.GetKey(GlobalVariables.rightKey) || Input.GetKey(KeyCode.RightArrow)) { moveInput += 1f; }
             rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
             // Jump

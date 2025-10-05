@@ -14,6 +14,8 @@ public class ResolutionDropdown : MonoBehaviour
     void Start()
     {
 
+        QualitySettings.vSyncCount = 1;
+
         // Get all resolutions from the system
         Resolution[] allResolutions = Screen.resolutions;
 
@@ -59,6 +61,7 @@ public class ResolutionDropdown : MonoBehaviour
         // Apply resolution on selection
         resolutionDropdown.onValueChanged.AddListener(SetResolution);
         screenDropdown.onValueChanged.AddListener(index => ChangeScreen(screenDropdown.options[index].text));
+        
         vSyncToggle.onValueChanged.AddListener(SetVSync);
     }
 

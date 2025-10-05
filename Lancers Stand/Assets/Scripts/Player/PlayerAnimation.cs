@@ -28,11 +28,11 @@ public class PlayerAnimation : MonoBehaviour
         if (!GlobalVariables.focusLocked && !GlobalVariables.isAttacking) {
             float moveX = 0f;
 
-            if (Input.GetKey(GlobalVariables.leftKey))  
+            if (Input.GetKey(GlobalVariables.leftKey) || Input.GetKey(KeyCode.LeftArrow))  
             {
                 moveX = -1f;
             }
-            else if (Input.GetKey(GlobalVariables.rightKey)) 
+            else if (Input.GetKey(GlobalVariables.rightKey) || Input.GetKey(KeyCode.RightArrow)) 
             {   
                 moveX = 1f;
             }

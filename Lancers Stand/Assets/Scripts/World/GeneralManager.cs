@@ -22,7 +22,7 @@ public class generalManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + -1);
+            SceneManager.LoadScene("MainMenu");
         }
     }
 

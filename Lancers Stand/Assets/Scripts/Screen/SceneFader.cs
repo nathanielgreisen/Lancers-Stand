@@ -7,6 +7,7 @@ public class SceneFader : MonoBehaviour
 {
     public static SceneFader instance;
     public Image fadeImage;
+    public Toggle tutorialToggle;
     public GameObject FadingCanvas;
     public float fadeDuration = 1f;
 
@@ -22,7 +23,15 @@ public class SceneFader : MonoBehaviour
 
     public void FadeToScene(string sceneName)
     {
-        if () {
+        if (GlobalVariables.tutorialEnabled)
+        {
+            StartCoroutine(FadeOutIn("Tutorial")); // Command to fade into a scene
+            GlobalVariables.tutorialEnabled = false;
+            tutorialToggle.isOn = false;
+
+        }
+        else
+        {
             StartCoroutine(FadeOutIn(sceneName)); // Command to fade into a scene
         }
         

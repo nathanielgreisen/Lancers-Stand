@@ -18652,9 +18652,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1203098142}
-        m_TargetAssemblyTypeName: ResolutionDropdown, Assembly-CSharp
-        m_MethodName: SetVSync
+      - m_Target: {fileID: 1203098139}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: SetTutorial
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18981,8 +18981,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneFader
   fadeImage: {fileID: 2141610146}
+  tutorialToggle: {fileID: 1557486152}
   FadingCanvas: {fileID: 69086207}
-  fadeDuration: 2
+  fadeDuration: 1
 --- !u!4 &1578363616
 Transform:
   m_ObjectHideFlags: 0

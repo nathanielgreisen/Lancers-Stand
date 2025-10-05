@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 public class MainMenu : MonoBehaviour
 {
@@ -14,7 +13,7 @@ public class MainMenu : MonoBehaviour
     public void Start()
     {
         settings.SetActive(false);
-        
+
     }
     public void Update()
     {
@@ -57,6 +56,14 @@ public class MainMenu : MonoBehaviour
 
         settings.SetActive(false);
         quitTag.text = "Press Escape to Quit!";
+    }
+    
+    public void SetTutorial(bool tutorialToggle)
+    {
+        if (tutorialToggle) { GlobalVariables.tutorialEnabled = true; }
+        else { GlobalVariables.tutorialEnabled = false; }
+        
+        Debug.Log("Tutorial: " + (tutorialToggle ? "Enabled" : "Disabled"));
     }
 
     
