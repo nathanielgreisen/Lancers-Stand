@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class PlayerDeathManager : MonoBehaviour
@@ -9,6 +8,8 @@ public class PlayerDeathManager : MonoBehaviour
     public GameObject healthBox;
 
     public GameObject player;
+
+    private SceneFader sceneFader;
 
     void Start()
     {
@@ -29,7 +30,7 @@ public class PlayerDeathManager : MonoBehaviour
 
 public void DeathButton(string screen)
     {
-        SceneManager.LoadScene(screen); // "MainMenu" or "SampleScene"
+        StartCoroutine(sceneFader.FadeOutIn(screen));
 
         GlobalVariables.currentScene = screen;
         GlobalVariables.health = 5;

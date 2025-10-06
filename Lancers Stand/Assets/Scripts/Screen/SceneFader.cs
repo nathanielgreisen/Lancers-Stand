@@ -7,7 +7,6 @@ public class SceneFader : MonoBehaviour
 {
     public static SceneFader instance;
     public Image fadeImage;
-    public Toggle tutorialToggle;
     public GameObject FadingCanvas;
     public float fadeDuration = 1f;
 
@@ -18,7 +17,7 @@ public class SceneFader : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(FadeIn(3)); // When game first opens, fade in
+        StartCoroutine(FadeIn(1)); // When game first opens, fade in
     }
 
     public void FadeToScene(string sceneName)
@@ -27,13 +26,17 @@ public class SceneFader : MonoBehaviour
         {
             StartCoroutine(FadeOutIn("Tutorial")); // Command to fade into a scene
             GlobalVariables.tutorialEnabled = false;
-            tutorialToggle.isOn = false;
-
         }
         else
         {
             StartCoroutine(FadeOutIn(sceneName)); // Command to fade into a scene
         }
+
+        GlobalVariables.health = 5;
+        GlobalVariables.maxHealth = 5.0;
+        GlobalVariables.focusLocked = false;
+        GlobalVariables.isAttacking = false;
+        GlobalVariables.isDamaging = false;
         
     }
 

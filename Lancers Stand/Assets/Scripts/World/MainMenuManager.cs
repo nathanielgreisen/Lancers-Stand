@@ -1,18 +1,23 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
 
     public GameObject playButton;
     public GameObject settingsButton;
     public GameObject creditsButton;
+    public GameObject tutorialCheck;
     public GameObject settings;
 
     public TMP_Text quitTag;
+    public Toggle tutorialToggle;
 
     public void Start()
     {
         settings.SetActive(false);
+        tutorialToggle.isOn = GlobalVariables.tutorialEnabled;
+        tutorialToggle.onValueChanged.AddListener(SetTutorial);
 
     }
     public void Update()
@@ -42,6 +47,7 @@ public class MainMenu : MonoBehaviour
         playButton.SetActive(false);
         settingsButton.SetActive(false);
         creditsButton.SetActive(false);
+        tutorialCheck.SetActive(false);
 
         settings.SetActive(true);
         quitTag.text = "Press Escape to Return to Menu!";
@@ -53,6 +59,7 @@ public class MainMenu : MonoBehaviour
         playButton.SetActive(true);
         settingsButton.SetActive(true);
         creditsButton.SetActive(true);
+        tutorialCheck.SetActive(true);
 
         settings.SetActive(false);
         quitTag.text = "Press Escape to Quit!";
