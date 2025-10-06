@@ -19336,7 +19336,7 @@ GameObject:
   - component: {fileID: 1260749997}
   - component: {fileID: 1260749996}
   m_Layer: 5
-  m_Name: KeybindsText
+  m_Name: Developers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
