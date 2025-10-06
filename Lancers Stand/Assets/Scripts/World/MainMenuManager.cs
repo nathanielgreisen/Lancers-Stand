@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     public GameObject creditsButton;
     public GameObject tutorialCheck;
     public GameObject settings;
+    public GameObject credits;
 
     public TMP_Text quitTag;
     public Toggle tutorialToggle;
@@ -16,6 +17,7 @@ public class MainMenu : MonoBehaviour
     public void Start()
     {
         settings.SetActive(false);
+        credits.SetActive(false);
         tutorialToggle.isOn = GlobalVariables.tutorialEnabled;
         tutorialToggle.onValueChanged.AddListener(SetTutorial);
 
@@ -30,7 +32,7 @@ public class MainMenu : MonoBehaviour
             }
             else
             {
-                DisableSettings();
+                ReturnMenu();
             }
         }
     }
@@ -48,12 +50,26 @@ public class MainMenu : MonoBehaviour
         settingsButton.SetActive(false);
         creditsButton.SetActive(false);
         tutorialCheck.SetActive(false);
-
+        
+        credits.SetActive(false);
         settings.SetActive(true);
         quitTag.text = "Press Escape to Return to Menu!";
     }
 
-    public void DisableSettings()
+    public void EnableCredits()
+    {
+        GlobalVariables.currentScene = "Credits";
+        playButton.SetActive(false);
+        settingsButton.SetActive(false);
+        creditsButton.SetActive(false);
+        tutorialCheck.SetActive(false);
+        
+        credits.SetActive(true);
+        settings.SetActive(false);
+        quitTag.text = "Press Escape to Return to Menu!";
+    }
+
+    public void ReturnMenu()
     {
         GlobalVariables.currentScene = "MainMenu";
         playButton.SetActive(true);
@@ -62,6 +78,7 @@ public class MainMenu : MonoBehaviour
         tutorialCheck.SetActive(true);
 
         settings.SetActive(false);
+        credits.SetActive(false);
         quitTag.text = "Press Escape to Quit!";
     }
     
