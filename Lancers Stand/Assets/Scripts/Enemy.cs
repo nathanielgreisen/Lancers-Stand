@@ -108,7 +108,7 @@ public class Enemy : MonoBehaviour
         jumpTimer -= Time.deltaTime;
 
         // Handle landing behavior
-        if (grounded && !wasGrounded)
+        if (grounded)
         {
             // Always stop horizontal sliding when landing
             Vector2 velocity = rb.linearVelocity;
@@ -116,7 +116,7 @@ public class Enemy : MonoBehaviour
             rb.linearVelocity = velocity;
 
             // Only reset jump timer if not knocked back
-            if (!isKnockedBack)
+            if (!isKnockedBack && !wasGrounded)
             {
                 jumpTimer = jumpInterval;
             }
