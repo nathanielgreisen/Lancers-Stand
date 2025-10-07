@@ -60743,7 +60743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f852873591e98f9439686088498d5e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::sceneChangeBlock
-  targetScene: MainMenu
+  targetScene: CPP
 --- !u!61 &1172279259
 BoxCollider2D:
   m_ObjectHideFlags: 0
