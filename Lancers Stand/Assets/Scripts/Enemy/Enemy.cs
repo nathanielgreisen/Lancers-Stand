@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [Header("Enemy Data")]
     public int health = 5;
+    public string deathEvent;
 
     private Vector2 posDeath;
     public Sprite deathSprite;
@@ -15,6 +16,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Objects")]
     public GameObject player;
+    public GameObject playerSprite;
     public GameObject enemy;
     public TextMeshProUGUI healthText;
     private Rigidbody2D rb;
@@ -75,6 +77,12 @@ public class Enemy : MonoBehaviour
     public Sprite inAirLeft;
     public float aboutToJumpTime = 0.25f;
 
+    [Header("Hit Tint Effect")]
+    public Color hitTintColor = Color.red; // The color to tint when hit
+    private Color originalEnemyColor;
+    private Color originalPlayerColor;
+    private SpriteRenderer playerSpriteRenderer;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -84,6 +92,11 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = spriteHolder.GetComponent<SpriteRenderer>();
         pc = GetComponent<PolygonCollider2D>();
+        
+        // Store original colors for tint effect
+        originalEnemyColor = sr.color;
+        playerSpriteRenderer = playerSprite.GetComponent<SpriteRenderer>();
+        originalPlayerColor = playerSpriteRenderer.color;
 
         //more slime stuff
         jumpTimer = jumpInterval;
@@ -98,6 +111,9 @@ public class Enemy : MonoBehaviour
         {
             EnemyDeath();
         }
+
+        // Update hit tint effects
+        UpdateHitTints();
 
         healthText.text = health.ToString();
 
@@ -184,6 +200,7 @@ public class Enemy : MonoBehaviour
                 StopFollowing();
                 health--;
                 ApplyKnockback(knockbackDirection, knockbackStrength);
+                ApplyEnemyHitTint(); // Apply red tint to enemy
                 playerLastHitTime = Time.time;
             }
         }
@@ -207,6 +224,7 @@ public class Enemy : MonoBehaviour
                 playerRb.linearVelocity = Vector2.zero;
                 playerRb.AddForce(playerKnockback, ForceMode2D.Impulse);
 
+                ApplyPlayerHitTint(); // Apply red tint to player
                 enemyLastHitTime = Time.time;
             }
         }
@@ -411,6 +429,14 @@ public class Enemy : MonoBehaviour
         rb.AddTorque(torque, ForceMode2D.Impulse);
 
         deathObject.AddComponent<AutoFade>();
+
+        if (deathEvent != null && deathEvent != "")
+        {
+            EnemyOnDeath deathComponent = enemy.AddComponent<EnemyOnDeath>();
+            deathComponent.deathEvent = deathEvent;
+            deathComponent.TriggerDeath(); 
+        }
+        
         Destroy(gameObject);
     }
 
@@ -429,5 +455,65 @@ public class Enemy : MonoBehaviour
             sprite.GetPhysicsShape(i, path);
             pc.SetPath(i, path.ToArray());
         }
+    }
+
+    void UpdateHitTints()
+    {
+        // Update enemy tint based on cooldown
+        if (Time.time - playerLastHitTime <= playerHitCooldown && playerLastHitTime > 0)
+        {
+            // Enemy was recently hit - apply red tint that fades out
+            float timeLeft = playerHitCooldown - (Time.time - playerLastHitTime);
+            float tintAmount = timeLeft / playerHitCooldown; // 1.0 = full red, 0.0 = normal color
+
+            Color tintedColor = Color.Lerp(originalEnemyColor, hitTintColor, tintAmount);
+            sr.color = tintedColor;
+        }
+        else
+        {
+            // Cooldown is over - restore original color
+            sr.color = originalEnemyColor;
+        }
+
+        // Update player tint based on cooldown
+
+        if (Time.time - enemyLastHitTime <= enemyHitCooldown && enemyLastHitTime > 0)
+        {
+            // Player was recently hit - apply red tint that fades out
+            float timeLeft = enemyHitCooldown - (Time.time - enemyLastHitTime);
+            float tintAmount = timeLeft / enemyHitCooldown; // 1.0 = full red, 0.0 = normal color
+
+            Color tintedColor = Color.Lerp(originalPlayerColor, hitTintColor, tintAmount);
+            playerSpriteRenderer.color = tintedColor;
+        }
+        else
+        {
+            // Cooldown is over - restore original color
+            playerSpriteRenderer.color = originalPlayerColor;
+        }
+    }
+
+    void ApplyEnemyHitTint()
+    {
+        // Called when enemy gets hit - start red tint
+        sr.color = hitTintColor;
+    }
+
+    void ApplyPlayerHitTint()
+    {
+        // Called when player gets hit - start red tint
+        playerSpriteRenderer.color = hitTintColor;
+    }
+
+    // Draw gizmos to visualize enemy view distance
+    private void OnDrawGizmosSelected()
+    {
+        // Draw view distance as a blue circle
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, viewDistance);
+        
+        // Draw a semi-transparent filled circle for better visibility
+        Gizmos.color = new Color(0f, 0f, 1f, 0.1f); // Light blue with transparency
+        Gizmos.DrawSphere(transform.position, viewDistance);
     }
 }

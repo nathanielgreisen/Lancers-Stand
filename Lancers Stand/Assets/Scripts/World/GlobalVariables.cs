@@ -13,6 +13,7 @@ public static class GlobalVariables
     // GAME DATA
     public static string currentScene = "MainMenu"; // MainMenu, Settings, Credits, SampleScene
     public static bool tutorialEnabled = true;
+    public static bool cameraLocked = false;
 
 
     // KEYBINDS

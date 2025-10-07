@@ -34,9 +34,10 @@ public void DeathButton(string screen)
         SceneManager.LoadScene(screen);
 
         GlobalVariables.currentScene = screen;
-        GlobalVariables.health = 10;
         GlobalVariables.maxHealth = 10.0;
+        GlobalVariables.health = GlobalVariables.maxHealth;
         GlobalVariables.focusLocked = false;
+        GlobalVariables.cameraLocked = false;
         GlobalVariables.isAttacking = false;
         GlobalVariables.isDamaging = false;
     }

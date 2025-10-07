@@ -13,21 +13,23 @@ public class CameraFollow : MonoBehaviour
 
     private void LateUpdate()
     {
-
-        // Desired position with offset
-        Vector3 targetPosition = target.position + offset;
-
-        // Linearly interpolates to target should be smooth most of the time i think
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, smoothSpeed); 
-
-        // Clamp inside bounds if enabled
-        if (useBounds)
+        if (!GlobalVariables.cameraLocked)
         {
-            float clampedX = Mathf.Clamp(smoothedPosition.x, minBounds.x, maxBounds.x);
-            float clampedY = Mathf.Clamp(smoothedPosition.y, minBounds.y, maxBounds.y);
-            smoothedPosition = new Vector3(clampedX, clampedY, smoothedPosition.z);
-        }
+            // Desired position with offset
+            Vector3 targetPosition = target.position + offset;
 
-        transform.position = smoothedPosition;
+            // Linearly interpolates to target should be smooth most of the time i think
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, smoothSpeed);
+
+            // Clamp inside bounds if enabled
+            if (useBounds)
+            {
+                float clampedX = Mathf.Clamp(smoothedPosition.x, minBounds.x, maxBounds.x);
+                float clampedY = Mathf.Clamp(smoothedPosition.y, minBounds.y, maxBounds.y);
+                smoothedPosition = new Vector3(clampedX, clampedY, smoothedPosition.z);
+            }
+
+            transform.position = smoothedPosition;
+        }
     }
 }

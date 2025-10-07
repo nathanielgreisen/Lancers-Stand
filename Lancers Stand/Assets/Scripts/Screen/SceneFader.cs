@@ -26,14 +26,17 @@ public class SceneFader : MonoBehaviour
         {
             StartCoroutine(FadeOutIn("Tutorial")); // Command to fade into a scene
             GlobalVariables.tutorialEnabled = false;
+            GlobalVariables.currentScene = "Tutorial";
         }
         else
         {
             StartCoroutine(FadeOutIn(sceneName)); // Command to fade into a scene
+            GlobalVariables.currentScene = sceneName;
         }
 
-        GlobalVariables.health = 10;
+        
         GlobalVariables.maxHealth = 10.0;
+        GlobalVariables.health = GlobalVariables.maxHealth;
         GlobalVariables.focusLocked = false;
         GlobalVariables.isAttacking = false;
         GlobalVariables.isDamaging = false;
