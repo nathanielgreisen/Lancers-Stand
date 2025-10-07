@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
 
     private Vector2 posDeath;
     public Sprite deathSprite;
+    public float spriteScale = 1f;
     public PhysicsMaterial2D deathPhysics;
     private PolygonCollider2D pc;
 
@@ -239,11 +240,13 @@ public class Enemy : MonoBehaviour
         Vector2 directionToPlayer = (playerPosition - currentPosition).normalized;
 
         // Apply horizontal force to move towards player
-        rb.AddForce(new Vector2(directionToPlayer.x * followSpeed, 0), ForceMode2D.Force);
+        // rb.AddForce(new Vector2(directionToPlayer.x * followSpeed, 0), ForceMode2D.Force);
 
-        Vector2 velocity = rb.linearVelocity;
-        velocity.x = Mathf.Clamp(velocity.x, -followSpeed, followSpeed);
-        rb.linearVelocity = velocity;
+        // Vector2 velocity = rb.linearVelocity;
+        // velocity.x = Mathf.Clamp(velocity.x, -followSpeed, followSpeed);
+        // rb.linearVelocity = velocity;
+
+        rb.linearVelocity = new Vector2(directionToPlayer.x * followSpeed, rb.linearVelocity.y);
     }
 
     public void StopFollowing()
@@ -393,6 +396,8 @@ public class Enemy : MonoBehaviour
         FixCollider(pc, sr);
 
         deathObject.transform.position = new Vector2(posDeath.x, posDeath.y);
+
+        deathObject.transform.localScale = Vector3.one * spriteScale;
 
         // Random lanuching bc it looks cool
         // Im just going to hardcode values

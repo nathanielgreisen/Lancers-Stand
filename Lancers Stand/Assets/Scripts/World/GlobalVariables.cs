@@ -3,8 +3,8 @@ using UnityEngine;
 public static class GlobalVariables
 {
     // PLAYER DATA
-    public static double health = 5.0;
-    public static double maxHealth = 5.0;
+    public static double health = 10.0;
+    public static double maxHealth = 10.0;
     public static bool focusLocked = false;
     public static bool isAttacking = false; // Animation
     public static bool isDamaging = false; // Only 2 attack frames will actually deal damage

@@ -32,8 +32,8 @@ public class SceneFader : MonoBehaviour
             StartCoroutine(FadeOutIn(sceneName)); // Command to fade into a scene
         }
 
-        GlobalVariables.health = 5;
-        GlobalVariables.maxHealth = 5.0;
+        GlobalVariables.health = 10;
+        GlobalVariables.maxHealth = 10.0;
         GlobalVariables.focusLocked = false;
         GlobalVariables.isAttacking = false;
         GlobalVariables.isDamaging = false;
