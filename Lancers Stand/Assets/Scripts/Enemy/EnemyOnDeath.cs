@@ -13,6 +13,9 @@ public class EnemyOnDeath : MonoBehaviour
             case "USCTrojanBoss":
                 USCTrojanBossDeathEvent();
                 break;
+            case "GCUAntelopeBoss":
+                GCUAntelopeBossDeathEvent();
+                break;
             case "Heart":
                 SpawnHeart();
                 break;
@@ -49,6 +52,39 @@ public class EnemyOnDeath : MonoBehaviour
 
         Debug.Log("USC Trojan Boss defeated! Erased " + (tilesToErase.Length + (tilesToErase.Length / 2)) + " tiles");
     }
+    
+    private void GCUAntelopeBossDeathEvent()
+    {
+        GameObject middleTilemapObj = GameObject.Find("Middle");
+        Tilemap middleTilemap = middleTilemapObj.GetComponent<Tilemap>();
+
+        GameObject backTilemapObj = GameObject.Find("Back");
+        Tilemap backTilemap = backTilemapObj.GetComponent<Tilemap>();
+
+        Vector3Int[] tilesToErase = new Vector3Int[]
+        {
+            // Row 32
+            new Vector3Int(-15, 32, 0), new Vector3Int(-14, 32, 0), new Vector3Int(-13, 32, 0),
+            new Vector3Int(-12, 32, 0), new Vector3Int(-11, 32, 0), new Vector3Int(-10, 32, 0),
+            new Vector3Int(-9, 32, 0), new Vector3Int(-8, 32, 0), new Vector3Int(-7, 32, 0),
+            new Vector3Int(-6, 32, 0), new Vector3Int(-5, 32, 0),
+            
+            // Row 31
+            new Vector3Int(-15, 31, 0), new Vector3Int(-14, 31, 0), new Vector3Int(-13, 31, 0),
+            new Vector3Int(-12, 31, 0), new Vector3Int(-11, 31, 0), new Vector3Int(-10, 31, 0),
+            new Vector3Int(-9, 31, 0), new Vector3Int(-8, 31, 0), new Vector3Int(-7, 31, 0),
+            new Vector3Int(-6, 31, 0), new Vector3Int(-5, 31, 0)
+        };
+
+        // Erase the specified tiles
+        foreach (Vector3Int tilePosition in tilesToErase)
+        {
+            middleTilemap.SetTile(tilePosition, null);
+            backTilemap.SetTile(tilePosition, null);
+        }
+
+        Debug.Log("GCU Antelope Boss defeated! Erased " + (tilesToErase.Length + (tilesToErase.Length / 2)) + " tiles");
+    }
 
     private void SpawnHeart()
     {
@@ -70,6 +106,6 @@ public class EnemyOnDeath : MonoBehaviour
             heartObject.AddComponent<HeartItem>();
 
             Debug.Log("Heart spawned at enemy death location");
-        } 
+        }
     }
 }

@@ -83,6 +83,10 @@ public class Enemy : MonoBehaviour
     private Color originalPlayerColor;
     private SpriteRenderer playerSpriteRenderer;
 
+    [Header("Boss Function")]
+    private float bossTimer = 0f;
+    private float bossInterval = 1f; // Every second
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -174,6 +178,9 @@ public class Enemy : MonoBehaviour
         {
             FacingDetection();
         }
+
+        // Call boss function if this enemy has a boss death event
+        BossFunction();
 
         wasGrounded = grounded;
 
@@ -476,7 +483,6 @@ public class Enemy : MonoBehaviour
         }
 
         // Update player tint based on cooldown
-
         if (Time.time - enemyLastHitTime <= enemyHitCooldown && enemyLastHitTime > 0)
         {
             // Player was recently hit - apply red tint that fades out
@@ -489,7 +495,11 @@ public class Enemy : MonoBehaviour
         else
         {
             // Cooldown is over - restore original color
-            playerSpriteRenderer.color = originalPlayerColor;
+            // Failsafe: Force restore original color if it's not already set correctly
+            if (playerSpriteRenderer.color != originalPlayerColor)
+            {
+                playerSpriteRenderer.color = originalPlayerColor;
+            }
         }
     }
 
@@ -505,13 +515,38 @@ public class Enemy : MonoBehaviour
         playerSpriteRenderer.color = hitTintColor;
     }
 
+    void BossFunction()
+    {
+        float distance = Vector2.Distance(player.transform.position, enemy.transform.position);
+        if (distance < viewDistance)
+        {
+            if (deathEvent == "GCUAntelopeBoss")
+            {
+                bossTimer += Time.deltaTime;
+
+                if (bossTimer >= bossInterval)
+                {
+                    bossTimer = 0f;
+
+                    if (Random.value <= 0.20f)
+                    {
+                        // Find GCUSlimeTemplate
+                        GameObject slimeTemplate = GameObject.Find("GCUSlimeTemplate");
+
+                        Instantiate(slimeTemplate, transform.position, transform.rotation);
+                    }
+                }
+            }
+        }
+    }
+
     // Draw gizmos to visualize enemy view distance
     private void OnDrawGizmosSelected()
     {
         // Draw view distance as a blue circle
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, viewDistance);
-        
+
         // Draw a semi-transparent filled circle for better visibility
         Gizmos.color = new Color(0f, 0f, 1f, 0.1f); // Light blue with transparency
         Gizmos.DrawSphere(transform.position, viewDistance);

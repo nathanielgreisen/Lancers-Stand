@@ -24,6 +24,9 @@ public static class GlobalVariables
     "LeftShift", "Space", "Equals",
     "LeftArrow", "RightArrow", "UpArrow", "DownArrow"
     };
+    public static string[] largeKeys = new string[] {
+        "LeftShift", "Space"
+    };
     public static KeyCode leftKey = KeyCode.A;
     public static KeyCode rightKey = KeyCode.D;
     public static KeyCode jumpKey = KeyCode.Space;
