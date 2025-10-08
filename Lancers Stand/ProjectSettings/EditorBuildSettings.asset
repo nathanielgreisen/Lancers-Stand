@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/USC.unity
     guid: 7b3d1060c1ce8814d8f961cfbe4a471c
   - enabled: 1
-    path: Assets/Scenes/CPP.unity
+    path: Assets/Scenes/GCU.unity
     guid: 70014835d45c447129af7cddc2e28f06
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity

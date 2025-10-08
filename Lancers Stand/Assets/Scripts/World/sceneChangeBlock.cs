@@ -5,14 +5,23 @@ public class sceneChangeBlock : MonoBehaviour
 {
 
     public string targetScene;
-    private SceneFader sceneFader;
     
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(targetScene);
-            GlobalVariables.currentScene = targetScene;
+            // Find the SceneFader instance and use it to fade to the target scene
+            SceneFader sceneFader = FindFirstObjectByType<SceneFader>();
+            if (sceneFader != null)
+            {
+                sceneFader.FadeToScene(targetScene);
+            }
+            else
+            {
+                // Fallback to direct scene loading if SceneFader is not found
+                SceneManager.LoadScene(targetScene);
+                GlobalVariables.currentScene = targetScene;
+            }
         }
     }
     
