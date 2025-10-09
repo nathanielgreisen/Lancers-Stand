@@ -399,6 +399,12 @@ public class Enemy : MonoBehaviour
 
     void EnemyDeath()
     {
+        // Restore player's original color before destroying this enemy
+        if (playerSpriteRenderer != null)
+        {
+            playerSpriteRenderer.color = originalPlayerColor;
+        }
+
         posDeath = transform.position;
 
         // Create object
@@ -537,6 +543,16 @@ public class Enemy : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    // Ensure player color is restored when enemy is destroyed
+    void OnDestroy()
+    {
+        // Restore player's original color when this enemy is destroyed
+        if (playerSpriteRenderer != null)
+        {
+            playerSpriteRenderer.color = originalPlayerColor;
         }
     }
 
