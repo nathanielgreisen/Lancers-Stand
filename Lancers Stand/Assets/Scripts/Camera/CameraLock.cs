@@ -24,9 +24,12 @@ public class CameraLock : MonoBehaviour
 
     void Start()
     {
-        if(objectFocus != null){
+        if (objectFocus != null)
+        {
             existed = true;
         }
+        
+        GlobalVariables.cameraLocked = false;
     }
 
     void Update()

@@ -288,9 +288,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   health: 5
+  deathEvent: 
   deathSprite: {fileID: 21300000, guid: 6aa97fa1182160b49a9f6a5581ea809d, type: 3}
+  spriteScale: 1
   deathPhysics: {fileID: 6200000, guid: 7f267f0fbff354075a656d360562b415, type: 2}
   player: {fileID: 1819816207}
+  playerSprite: {fileID: 0}
   enemy: {fileID: 31975248}
   healthText: {fileID: 1923288046}
   knockbackStrength: 5
@@ -323,6 +326,7 @@ MonoBehaviour:
   inAirRight: {fileID: 21300000, guid: 8c72e83c0996f6f4ba10105ac22c2125, type: 3}
   inAirLeft: {fileID: 21300000, guid: efaf41f4a9c15304eb91a9e3d8d3ef21, type: 3}
   aboutToJumpTime: 0.25
+  hitTintColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!50 &31975250
 Rigidbody2D:
   serializedVersion: 5
@@ -743,9 +747,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   health: 5
+  deathEvent: 
   deathSprite: {fileID: 21300000, guid: 85f7aec07daed4da7be4a192dd34b628, type: 3}
+  spriteScale: 1
   deathPhysics: {fileID: 6200000, guid: 7f267f0fbff354075a656d360562b415, type: 2}
   player: {fileID: 1819816207}
+  playerSprite: {fileID: 0}
   enemy: {fileID: 190275770}
   healthText: {fileID: 1133619666}
   knockbackStrength: 5
@@ -774,6 +781,7 @@ MonoBehaviour:
   inAirRight: {fileID: 21300000, guid: 266de5fbcb96341f39b747762489dac7, type: 3}
   inAirLeft: {fileID: 21300000, guid: f719ec3b5c3de45bfa65a5703586195a, type: 3}
   aboutToJumpTime: 0.25
+  hitTintColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!50 &190275772
 Rigidbody2D:
   serializedVersion: 5
@@ -3862,9 +3870,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   health: 5
+  deathEvent: 
   deathSprite: {fileID: 21300000, guid: 863cef36b25f2497ca806e403646a804, type: 3}
+  spriteScale: 1
   deathPhysics: {fileID: 6200000, guid: 7f267f0fbff354075a656d360562b415, type: 2}
   player: {fileID: 1819816207}
+  playerSprite: {fileID: 0}
   enemy: {fileID: 621639647}
   healthText: {fileID: 1808246891}
   knockbackStrength: 5
@@ -3893,6 +3904,7 @@ MonoBehaviour:
   inAirRight: {fileID: 21300000, guid: 168f1d4d84c1148ecb840c86f8862cd4, type: 3}
   inAirLeft: {fileID: 21300000, guid: 46a421aa2e0a54ba38554c1e8ee8701f, type: 3}
   aboutToJumpTime: 0.25
+  hitTintColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!50 &621639649
 Rigidbody2D:
   serializedVersion: 5
@@ -45539,9 +45551,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   health: 5
+  deathEvent: 
   deathSprite: {fileID: 21300000, guid: 536607cc2428f514c86cd56f02ca163e, type: 3}
+  spriteScale: 1
   deathPhysics: {fileID: 6200000, guid: 7f267f0fbff354075a656d360562b415, type: 2}
   player: {fileID: 1819816207}
+  playerSprite: {fileID: 0}
   enemy: {fileID: 1741157505}
   healthText: {fileID: 961342898}
   knockbackStrength: 5
@@ -45574,6 +45589,7 @@ MonoBehaviour:
   inAirRight: {fileID: 0}
   inAirLeft: {fileID: 0}
   aboutToJumpTime: 0.25
+  hitTintColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!70 &1741157511
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -45847,7 +45863,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   HealthBackground: {fileID: 69915180}
-  HeartTemplate: {fileID: 474818182}
 --- !u!114 &1819816215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45928,7 +45943,7 @@ MonoBehaviour:
   attackSpriteLeft1: {fileID: 21300000, guid: 43962116548ed4fa6bb60ae2635f2ddf, type: 3}
   attackSpriteLeft2: {fileID: 21300000, guid: f8330754eed5f234ead02dbcb4443712, type: 3}
   attackSpriteLeft3: {fileID: 21300000, guid: b4479da16d2481943a5039621a371c5f, type: 3}
-  attackAnimationDuration: 0.75
+  attackAnimationDuration: 0.5
   spriteHolder: {fileID: 201388887}
 --- !u!1 &1913820908
 GameObject:

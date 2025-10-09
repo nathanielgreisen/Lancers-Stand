@@ -7447,7 +7447,7 @@ MonoBehaviour:
   attackSpriteLeft1: {fileID: 21300000, guid: 43962116548ed4fa6bb60ae2635f2ddf, type: 3}
   attackSpriteLeft2: {fileID: 21300000, guid: f8330754eed5f234ead02dbcb4443712, type: 3}
   attackSpriteLeft3: {fileID: 21300000, guid: b4479da16d2481943a5039621a371c5f, type: 3}
-  attackAnimationDuration: 0.75
+  attackAnimationDuration: 0.5
   spriteHolder: {fileID: 304705106}
 --- !u!114 &241571135
 MonoBehaviour:

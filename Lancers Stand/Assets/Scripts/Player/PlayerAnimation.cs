@@ -15,7 +15,7 @@ public class PlayerAnimation : MonoBehaviour
     private SpriteRenderer sr;
     private float animationTimer = 0f;
     private int currentFrame = 0;
-    public float frameRate = 0.2f; // Time per frame
+    public float frameRate = 0.1f; // Time per frame
     private Vector2 lastDirection = Vector2.right;
 
     void Start()

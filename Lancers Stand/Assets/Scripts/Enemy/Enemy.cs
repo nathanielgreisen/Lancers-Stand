@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class Enemy : MonoBehaviour
 {
@@ -87,6 +88,13 @@ public class Enemy : MonoBehaviour
     private float bossTimer = 0f;
     private float bossInterval = 1f; // Every second
 
+    // Boss teleportation variables
+    private float teleportTimer = 0f;
+    private float teleportInterval = 5f;
+    private bool isTeleporting = false;
+    private float teleportTintDuration = 1f; // 1 second to turn purple
+    private float teleportTintTimer = 0f;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -96,7 +104,7 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = spriteHolder.GetComponent<SpriteRenderer>();
         pc = GetComponent<PolygonCollider2D>();
-        
+
         // Store original colors for tint effect
         originalEnemyColor = sr.color;
         playerSpriteRenderer = playerSprite.GetComponent<SpriteRenderer>();
@@ -400,10 +408,7 @@ public class Enemy : MonoBehaviour
     void EnemyDeath()
     {
         // Restore player's original color before destroying this enemy
-        if (playerSpriteRenderer != null)
-        {
-            playerSpriteRenderer.color = originalPlayerColor;
-        }
+        playerSpriteRenderer.color = originalPlayerColor;
 
         posDeath = transform.position;
 
@@ -447,9 +452,9 @@ public class Enemy : MonoBehaviour
         {
             EnemyOnDeath deathComponent = enemy.AddComponent<EnemyOnDeath>();
             deathComponent.deathEvent = deathEvent;
-            deathComponent.TriggerDeath(); 
+            deathComponent.TriggerDeath();
         }
-        
+
         Destroy(gameObject);
     }
 
@@ -526,22 +531,77 @@ public class Enemy : MonoBehaviour
         float distance = Vector2.Distance(player.transform.position, enemy.transform.position);
         if (distance < viewDistance)
         {
-            if (deathEvent == "GCUAntelopeBoss")
+            switch (deathEvent)
             {
-                bossTimer += Time.deltaTime;
+                case "GCUAntelopeBoss":
+                    HandleMinionSpawning(0.2f, "GCUSlimeTemplate");
+                    break;
+                case "CPPMustangBoss":
+                    HandleMinionSpawning(0.1f, "CPPSlimeTemplate");
+                    HandleBossTeleportation();
+                    break;
+            }
+        }
+    }
 
-                if (bossTimer >= bossInterval)
-                {
-                    bossTimer = 0f;
+    void HandleMinionSpawning(float chance, string template)
+    {
+        bossTimer += Time.deltaTime;
 
-                    if (Random.value <= 0.20f)
-                    {
-                        // Find GCUSlimeTemplate
-                        GameObject slimeTemplate = GameObject.Find("GCUSlimeTemplate");
+        if (bossTimer >= bossInterval)
+        {
+            bossTimer = 0f;
 
-                        Instantiate(slimeTemplate, transform.position, transform.rotation);
-                    }
-                }
+            if (Random.value <= chance)
+            {
+                // Find slime template
+                GameObject slimeTemplate = GameObject.Find(template);
+
+                Instantiate(slimeTemplate, transform.position, transform.rotation);
+            }
+            playerSpriteRenderer.color = originalPlayerColor;
+        }
+    }
+
+    void HandleBossTeleportation()
+    {
+        // Update teleport timer
+        teleportTimer += Time.deltaTime;
+
+        if (!isTeleporting && teleportTimer >= teleportInterval)
+        {
+            // Start teleportation process
+            isTeleporting = true;
+            teleportTintTimer = 0f;
+        }
+
+        if (isTeleporting)
+        {
+            // Update tint timer
+            teleportTintTimer += Time.deltaTime;
+
+            // Calculate purple tint progress (0 to 1 over 1 second)
+            float tintProgress = teleportTintTimer / teleportTintDuration;
+
+            if (tintProgress <= 1f)
+            {
+                // Lerp from original color to purple
+                Color currentColor = Color.Lerp(originalEnemyColor, Color.magenta, tintProgress);
+                sr.color = currentColor;
+            }
+            else
+            {
+                // Teleportation complete - reset color and position
+                sr.color = originalEnemyColor;
+
+                // Set random position: x between -53 and -30, y = 15
+                float randomX = Random.Range(-53f, -30f);
+                transform.position = new Vector3(randomX, 13.5f, transform.position.z);
+
+                // Reset timers
+                isTeleporting = false;
+                teleportTimer = 0f;
+                teleportTintTimer = 0f;
             }
         }
     }

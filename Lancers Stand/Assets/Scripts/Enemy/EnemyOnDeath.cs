@@ -16,6 +16,9 @@ public class EnemyOnDeath : MonoBehaviour
             case "GCUAntelopeBoss":
                 GCUAntelopeBossDeathEvent();
                 break;
+            case "CPPMustangBoss":
+                CPPMustangBossDeathEvent();
+                break;
             case "Heart":
                 SpawnHeart();
                 break;
@@ -52,7 +55,7 @@ public class EnemyOnDeath : MonoBehaviour
 
         Debug.Log("USC Trojan Boss defeated! Erased " + (tilesToErase.Length + (tilesToErase.Length / 2)) + " tiles");
     }
-    
+
     private void GCUAntelopeBossDeathEvent()
     {
         GameObject middleTilemapObj = GameObject.Find("Middle");
@@ -84,6 +87,28 @@ public class EnemyOnDeath : MonoBehaviour
         }
 
         Debug.Log("GCU Antelope Boss defeated! Erased " + (tilesToErase.Length + (tilesToErase.Length / 2)) + " tiles");
+    }
+    
+    private void CPPMustangBossDeathEvent()
+    {
+        GameObject middleTilemapObj = GameObject.Find("Middle");
+        Tilemap middleTilemap = middleTilemapObj.GetComponent<Tilemap>();
+
+        Vector3Int[] tilesToErase = new Vector3Int[]
+        {
+            // x=-57, Row -2
+            new Vector3Int(-57, -2, 0),
+            
+            // x=-57, Row -3
+            new Vector3Int(-57, -3, 0)
+        };
+
+        foreach (Vector3Int tilePosition in tilesToErase)
+        {
+            middleTilemap.SetTile(tilePosition, null);
+        }
+
+        Debug.Log("CPP Mustang Boss defeated! Erased " + tilesToErase.Length + " tiles");
     }
 
     private void SpawnHeart()
