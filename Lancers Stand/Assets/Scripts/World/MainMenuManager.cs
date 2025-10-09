@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
@@ -34,6 +35,29 @@ public class MainMenu : MonoBehaviour
             {
                 ReturnMenu();
             }
+        }
+        else if (Input.GetKeyDown(KeyCode.P))
+        {
+            // Find the SceneFader instance and use it to fade to the target scene
+            SceneFader sceneFader = FindFirstObjectByType<SceneFader>();
+            if (sceneFader != null)
+            {
+                sceneFader.FadeToScene("USC");
+            }
+            else
+            {
+                // Fallback to direct scene loading if SceneFader is not found
+                SceneManager.LoadScene("USC");
+                GlobalVariables.currentScene = "USC";
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            EnableSettings();
+        } 
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            EnableCredits();
         }
     }
 
